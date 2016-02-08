@@ -12,19 +12,6 @@ AverageAge <- function(df){
   print(AveAge)
 }
 
-#'Histogram of the Ages
-#'
-#'Makes and displays the Histogram of the ages of the faculty
-#'@param data frame          The name of the clean data frame, Faculty
-#'@return The histogram of the age of the faculty
-#'@export
-AgeHistogram <- function(df){
-  BaYear<-df
-  BaYear <- as.numeric(as.character(BaYear$V3))
-  FacultyAge <- 2015 - BaYear + 21
-  AgeHist <- hist(FacultyAge,main="Distribution of Age",xlab="Age")
-}
-
 #'Maximum Age of the Faculty
 #'
 #'Finds the Maximum age within the faculty

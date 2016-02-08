@@ -9,3 +9,6 @@ Description: More about what it does (maybe more than one line)
 License: Williams
 LazyData: TRUE
 Imports: stringr
+Suggests: testthat,
+    knitr
+VignetteBuilder: knitr

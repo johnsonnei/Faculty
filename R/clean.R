@@ -12,7 +12,6 @@ library(stringr)
 #'Reads in a txt file in table format and creates a data frame from it, with cases corresponding to lines and variables to fileds in the file.
 #'@param .txt file          The name of the txt file
 #'@return The variable "Faculty", containing the data table that is imported
-#'@examples upload("/Users/jnjohn1995/Downloads/faculty/Faculty/faculty13.txt")
 #'@export
 upload <- function(txtfile) {
    Faculty <<- read.csv(file=txtfile,header=FALSE, fill=TRUE, na.string="NA")
@@ -24,7 +23,6 @@ upload <- function(txtfile) {
 #'Cleans the data for the Year people received their degrees by recursively deleting frames in the 3rd column that is not a year, eventually shifting all years not in the 3rd column to the 3rd column, while introducing NA's (which will be later removed) as to not disrupt the index of the dataframe.
 #'@param data frame          The name of the data frame, Faculty (from upload)
 #'@return A new dataframe (unassigned) that now has all years at which people received their degrees, in the 3rd column. Some frames may include NA's.
-#'@examples Faculty<-cleanyr1(Faculty)
 #'@export
 cleanyr1 <- function(df) {
   result <- df
@@ -60,7 +58,6 @@ cleanyr1 <- function(df) {
 #'Cleans the data for the Year people received their degrees by recursively deleting frames in the 3rd column that contains NA's due to the introduction of NA's when removing unwanted data in cleanyr1()
 #'@param data frame          The name of the data frame, Faculty (from cleanyr1)
 #'@return A new dataframe (unassigned) that now has all years at which people received their degrees, in the 3rd column. Some frames may still be blank.
-#'@examples Faculty<-cleanyr2(Faculty)
 #'@export
 cleanyr2 <- function(df) {
   result <- df
@@ -90,7 +87,6 @@ cleanyr2 <- function(df) {
 #'Cleans the data for the Year people received their degrees by recursively deleting frames in the 3rd column that is blank.
 #'@param data frame          The name of the data frame, Faculty (from cleanyr2)
 #'@return A new dataframe (unassigned) that now has all years at which people received their degrees, in the 3rd column.
-#'@examples Faculty<-cleanyr3(Faculty)
 #'@export
 cleanyr3 <- function(df) {
   result <- df
@@ -123,7 +119,6 @@ cleanyr3 <- function(df) {
 #'Cleans the data for the Names of the faculty.
 #'@param data frame          The name of the data frame, Faculty (from cleanyr3)
 #'@return A new dataframe (unassigned) that now has the name of the Faculty, cleaning out unnecessary symbols that had previously existed in the data.
-#'@examples Faculty<-cleanname(Faculty)
 #'@export
 cleanname<-function(df){
   result<-df
@@ -150,12 +145,13 @@ cleanname<-function(df){
 #'
 #'Cleans the data for the Department the faculty is a member of.
 #'@param data frame          The name of the data frame, Faculty (from cleanname)
-#'@return A new dataframe (unassigned) that now has the name of the Faculty, cleaning out unnecessary symbols that had previously existed in the data.
-#'@examples Faculty<-cleanname(Faculty)
+#'@return A new dataframe (unassigned) that now has department of the Faculty member, cleaning out unnecessary symbols and terminology that had previously existed in the data.
 #'@export
 cleansubject<-function(df){
   result<-df
+  #We must set the column to be characters so that we may use the string pattern matching function below
   result[,2] <- sapply(result[,2],as.character)
+  #create a vector of names of the Departments that we will replace the current data with.
   names <- c("Physics",
              "Japanese",
              "Mathematics",
@@ -206,16 +202,20 @@ cleansubject<-function(df){
              "Neuroscience")
 
   for( i in (1:nrow(df))) {
+    #set x to be the current row in the for loop we are looking at (essentially every row)
     x <- df[i,]
+    #set y to be the 2nd column of the current row, the column of the Departments of the faculty.
     y <- x[1,2]
+    #make sure the extracted frame is still character class
     z<-as.character(y)
-
+    #run the for loop for all the names in our vector of department names
     for (g in names) {
+      #if any of the names in our vector matches a word in the frame we are comparing with
       if(length(grep(g, z))>0){
-
-  result[i,2]<-g
-
+        #replace that frame with the name in our vector that had matched with a word in the frame
+        result[i,2]<-g
       }
+      #otherwise leave as is
       else{}
     }
   }

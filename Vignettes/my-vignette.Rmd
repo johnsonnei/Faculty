@@ -8,7 +8,7 @@ vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
-  
+
 # Abstract  
   
 This R package serves to answer the main question of what is the average age of the Williams College faculty using the 2013 through 2014 data of Williams faculty provided by Williams College. The main functions of this package are to clean and manipulate the data so that it may be more pliable to further functions, and to provide a general summary of the Williams College Faculty's age, including the Average, maximum, minimum, range of the ages, and so forth. Moreover, this package explores some small extensions such as sorting by the department the faculty are a part of through cleaning the data.  
@@ -25,6 +25,7 @@ Having preserved within the Top National Liberal Arts Colleges, much of which ar
 This R package requires the use of 3 other packages (devtools, dplyr, stringr) whose libraries are recommended to be opened for this package to perform to its fullest.  
   
 ###Upload  
+You may need to first run install_github(“johnsonnei/faculty”,build_vignette=TRUE) to view the vignette.  
 The upload function requires that you know the location of where your data, the data of Williams college 2013 2014 is in. You may then input this location in qutations into the upload function, which will then create the variable Faculty, to become a dataframe containing this data.  
 e.g. upload("/Users/jnjohn1995/Downloads/faculty/Faculty/faculty13.txt")
   

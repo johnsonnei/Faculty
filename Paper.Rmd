@@ -1,0 +1,13 @@
+---
+title: "Paper"
+author: "Johnson Nei"
+date: "January 24, 2016"
+output: pdf_document
+---
+
+```{r}
+library(tm)
+uri = 'faculty 2013 2014'
+pdf = readPDF(control = list(text = "-layout"))(elem = list(uri = uri), language = "en", id = "id1") 
+```  
+

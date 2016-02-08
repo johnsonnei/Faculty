@@ -1,0 +1,18 @@
+{
+    "contents" : "#'Cleans the data\n#'\n#'Takes in the url of the pdf and loads it\n#'@param x The url of the pdf dataset\n#'@return The pdf\n#'@export\nfdata <- read.csv(\"/Users/jnjohn1995/Downloads/faculty/Faculty/faculty13.txt\", header=FALSE, fill=TRUE, na.string=\"NA\")\n",
+    "created" : 1454925999768.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2573833390",
+    "id" : "2724A03",
+    "lastKnownWriteTime" : 1454910560,
+    "path" : "~/Downloads/faculty/Faculty/R/other.R",
+    "project_path" : "R/other.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "type" : "r_source"
+}
